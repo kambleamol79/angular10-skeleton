@@ -1,0 +1,150 @@
+<section class="section">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+          <div class="login-brand">
+            <img src="../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+          </div>
+
+          <div class="card card-primary">
+            <div class="card-header"><h4>Register</h4></div>
+
+            <div class="card-body">
+              <form [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                <div class="row">
+
+                  <div class="form-group col-6">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" formControlName="firstName" type="text" class="form-control" name="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" autofocus>
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                      <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-6">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="text" formControlName="lastName" class="form-control" name="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                      <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input id="email" formControlName="email" type="email" class="form-control" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="mobile">Contact No.</label>
+                  <input id="mobile" formControlName="mobile" type="number" class="form-control" name="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }">
+                  <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                    <div *ngIf="f.mobile.errors.required">Contact No. is required</div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label for="password" class="d-block">Password</label>
+                    <input id="password" type="password" formControlName="password"  class="form-control pwstrength" data-indicator="pwindicator" name="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                      <div *ngIf="f.password.errors.maxlength">Password must be at less than 8 characters</div>
+                    </div>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="confirm_password" class="d-block">Password Confirmation</label>
+                    <input id="confirm_password" type="password" formControlName="confirm_password" class="form-control" name="confirm_password" [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }">
+                    <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
+                      <div *ngIf="f.confirm_password.errors.required">Password Confirmation is required</div>
+                      <div *ngIf="f.password.errors.maxlength">Password Confirmation must be at less than 8 characters</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--<div class="form-divider">
+                  Your Home
+                </div>
+                 <div class="row">
+                  <div class="form-group col-6">
+                    <label>Country</label>
+                    <select class="form-control selectric">
+                      <option>Indonesia</option>
+                      <option>Palestine</option>
+                      <option>Syria</option>
+                      <option>Malaysia</option>
+                      <option>Thailand</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label>Province</label>
+                    <select class="form-control selectric">
+                      <option>West Java</option>
+                      <option>East Java</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label>City</label>
+                    <input type="text" class="form-control">
+                  </div>
+                  <div class="form-group col-6">
+                    <label>Postal Code</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div> -->
+
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <!-- <input type="checkbox" name="terms_conditions" formControlName="confirm_password" class="custom-control-input" id="terms_conditions" [ngClass]="{ 'is-invalid': submitted && f.terms_conditions.errors }">
+                    <label class="custom-control-label" for="terms_conditions">I agree with the terms and conditions</label>
+                    <div *ngIf="submitted && f.terms_conditions.errors" class="invalid-feedback">Accept Ts & Cs is required</div> -->
+
+                    <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" name="acceptTerms" class="custom-control-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                    <label for="acceptTerms" class="custom-control-label">Accept Terms & Conditions</label>
+                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Please Accept Terms & Conditions</div>
+
+                  </div>
+
+                  
+                </div>
+
+                <div class="form-group">
+                  <button [disabled]="loading" class="btn btn-primary btn-lg btn-block">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Register
+                </button>
+                </div>
+              </form>
+
+              <div class="text-center mt-4 mb-3">
+                <div class="text-job text-muted">Already registred <a [routerLink]="['/auth/signin']" >Click here to login</a></div>
+              </div>
+              <!-- <div class="row sm-gutters">
+                <div class="col-6">
+                  <a class="btn btn-block btn-social btn-facebook">
+                    <span class="fab fa-facebook"></span> Facebook
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a class="btn btn-block btn-social btn-twitter">
+                    <span class="fab fa-twitter"></span> Twitter
+                  </a>
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+          <div class="simple-footer">
+            Copyright &copy; Stisla 2018
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

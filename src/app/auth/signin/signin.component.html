@@ -1,0 +1,78 @@
+<section class="section">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+          <div class="login-brand">
+            <img src="../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+          </div>
+
+          <div class="card card-primary">
+            <div class="card-header"><h4>Login</h4></div>
+
+            <div class="card-body">
+              <form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input id="username" type="text" formControlName="username" class="form-control" name="username" tabindex="1" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" autofocus>
+                  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="d-block">
+                      <label for="password" class="control-label">Password</label>
+                    <div class="float-right">
+                      <a [routerLink]="['/auth/forgot-password']" class="text-small">
+                        Forgot Password?
+                      </a>
+                    </div>
+                  </div>
+                  <input id="password" type="password" formControlName="password" class="form-control" name="password" tabindex="2" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required>
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                    <label class="custom-control-label" for="remember-me">Remember Me</label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <button [disabled]="loading" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                </div>
+              </form>
+               <div class="text-center mt-4 mb-3">
+                <div class="text-job text-muted">Don't have an account? <a [routerLink]="['/auth/signup']">Create One</a> </div>
+              </div>
+              <!--<div class="row sm-gutters">
+                <div class="col-6">
+                  <a class="btn btn-block btn-social btn-facebook">
+                    <span class="fab fa-facebook"></span> Facebook
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a class="btn btn-block btn-social btn-twitter">
+                    <span class="fab fa-twitter"></span> Twitter
+                  </a>
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+          <!-- <div class="mt-5 text-muted text-center">
+            Don't have an account? <a [routerLink]="['/auth/signup']">Create One</a>
+          </div> -->
+          <div class="simple-footer">
+            Copyright &copy; Stisla 2018
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
